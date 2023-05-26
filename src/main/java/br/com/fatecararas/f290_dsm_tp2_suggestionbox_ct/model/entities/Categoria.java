@@ -9,13 +9,13 @@ import javax.persistence.Id;
 import lombok.Data;
 
 @Data
-@Entity(name = "categories")
-public class Category {
-
+@Entity(name =  "categorias")
+public class Categoria {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, length = 100, unique = true)
-    private String description;
+    @Column(nullable = false, unique = true, length = 50)
+    private String descricao;
 }
