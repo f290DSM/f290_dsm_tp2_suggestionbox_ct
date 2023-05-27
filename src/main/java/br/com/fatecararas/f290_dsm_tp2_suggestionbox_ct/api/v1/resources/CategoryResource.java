@@ -56,7 +56,7 @@ public class CategoryResource {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Integer pId) {
+    public void delete(@PathVariable("id") Integer pId) throws Exception {
         service.remover(pId);
     }
 }

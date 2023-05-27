@@ -3,8 +3,6 @@ package br.com.fatecararas.f290_dsm_tp2_suggestionbox_ct.services;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.Id;
-
 import org.springframework.stereotype.Service;
 
 import br.com.fatecararas.f290_dsm_tp2_suggestionbox_ct.config.exceptions.ObjectNotFoundException;
@@ -25,15 +23,11 @@ public class CategoryService {
     }
 
     public Category atualizar(Integer id, Category pCategory) {
-        Optional<Category> optCategory = repository.findById(id);
 
-        if (optCategory.isPresent()) {
-            Category category = optCategory.get();
-            category.setDescription(pCategory.getDescription());
-            return repository.save(category);
-        }
+        Category category = buscarPorId(id);
+        category.setDescription(pCategory.getDescription());
+        return repository.save(category);
 
-        throw new RuntimeException("Categoria não localizada. ID: " + id);
     }
 
     public Category buscarPorId(Integer pId) {
@@ -48,7 +42,12 @@ public class CategoryService {
         return repository.findAll();
     }
 
-    public void remover(Integer id) {
-        repository.deleteById(id);
+    public void remover(Integer id) throws Exception{
+        try {
+            repository.deleteById(id);
+        } catch (Exception e) {
+            throw new ObjectNotFoundException("Categoria não localizada. ID: " + id);
+        }
+        
     }
 }
