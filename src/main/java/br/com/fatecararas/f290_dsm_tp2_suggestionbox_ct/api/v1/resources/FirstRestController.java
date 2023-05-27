@@ -1,9 +1,5 @@
 package br.com.fatecararas.f290_dsm_tp2_suggestionbox_ct.api.v1.resources;
 
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.fatecararas.f290_dsm_tp2_suggestionbox_ct.model.Suggestion;
+import br.com.fatecararas.f290_dsm_tp2_suggestionbox_ct.model.entities.Suggestion;
 
 @RestController
 @RequestMapping("/")
@@ -52,24 +48,6 @@ public class FirstRestController {
         }
 
         return ResponseEntity.notFound().build();
-    }
-
-    @GetMapping("/all")
-    public ResponseEntity<List<Suggestion>> getAll() {
-        List<Suggestion> all = Arrays.asList(
-                new Suggestion(1, "Primeira sugestao",
-                        LocalDate.of(2019, 3, 12)),
-                new Suggestion(2, "Segunda sugestao",
-                        LocalDate.of(2020, 1, 2)),
-                new Suggestion(3, "Terceira sugestao",
-                        LocalDate.of(2021, 9, 19)),
-                new Suggestion(4, "Quarta sugestao",
-                        LocalDate.of(2017, 12, 30)),
-                new Suggestion(5, "Quinta sugestao",
-                        LocalDate.of(2016, 4, 16))
-        );
-
-        return ResponseEntity.ok().body(all);
     }
 
 }
