@@ -9,6 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Data;
 
@@ -20,9 +23,11 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank(message = "Descrição é obrigatória")
     @Column(nullable = false, length = 100, unique = true)
     private String description;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "category")
     private List<Suggestion> suggestions = new ArrayList<>();
 }

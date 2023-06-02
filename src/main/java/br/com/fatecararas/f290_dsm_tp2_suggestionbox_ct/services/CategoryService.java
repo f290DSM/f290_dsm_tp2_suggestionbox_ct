@@ -43,11 +43,11 @@ public class CategoryService {
     }
 
     public void remover(Integer id) throws Exception{
-        try {
+        // try {
             repository.deleteById(id);
-        } catch (Exception e) {
-            throw new ObjectNotFoundException("Categoria não localizada. ID: " + id);
-        }
+        // } catch (Exception e) {
+            // throw new ObjectNotFoundException("Categoria não localizada. ID: " + id);
+        // }
         
     }
 }
